@@ -1,0 +1,20 @@
+{% extends "quiz/base.html" %}
+
+{% block content %}
+<h1>{{ exam.title }}</h1>
+<p>{{ exam.description }}</p>
+
+<h2>Preguntas</h2>
+{% for question in exam.questions.all %}
+    <p><strong>{{ question.statement }}</strong></p>
+    <ul>
+        {% for choice in question.choices.all %}
+            <li>{{ choice.text }} {% if choice.is_correct %}(Correcta){% endif %}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+<a href="{% url 'quiz:question_create' exam.pk %}">Añadir Pregunta</a>
+<br>
+<a href="{% url 'quiz:exam_list' %}">Volver a la lista</a>
+{% endblock %}
