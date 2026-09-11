@@ -2,13 +2,13 @@
 
 {% block content %}
 <h1>Exámenes</h1>
-<ul>
-    {% for exam in exams %}
-    <li>
-        <a href="{% url 'quiz:exam_detail' exam.pk %}">{{ exam.title }}</a>
+{% for exam in exams %}
+    <div class="card">
+        <h2>{{ exam.title }}</h2>
         <p>{{ exam.description }}</p>
-        <small>{{ exam.created_at }}</small>
-    </li>
-    {% endfor %}
-</ul>
+        <small>Creado el: {{ exam.created_at|date:"d/m/Y" }}</small>
+        <br><br>
+        <a href="{% url 'quiz:exam_detail' exam.pk %}" class="btn">Ver examen</a>
+    </div>
+{% endfor %}
 {% endblock %}

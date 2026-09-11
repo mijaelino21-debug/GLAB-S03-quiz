@@ -1,17 +1,22 @@
 {% extends "quiz/base.html" %}
 
 {% block content %}
-<h1>Nueva Pregunta para {{ exam.title }}</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    
-    {{ formset.management_form }}
-    {% for form in formset %}
+<div class="card">
+    <h1>Nueva Pregunta para {{ exam.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
         {{ form.as_p }}
-    {% endfor %}
-    
-    <button type="submit">Guardar</button>
-</form>
+        
+        <h3>Opciones</h3>
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-radius: 4px;">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn">Guardar</button>
+    </form>
+</div>
 <a href="{% url 'quiz:exam_detail' exam.pk %}">Cancelar</a>
 {% endblock %}

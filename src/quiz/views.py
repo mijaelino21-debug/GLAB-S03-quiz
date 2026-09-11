@@ -33,7 +33,7 @@ def question_create(request, pk):
                 
                 formset.instance = question
                 formset.save()
-                return redirect('exam_detail', pk=exam.pk)
+                return redirect('quiz:exam_detail', pk=exam.pk)
     else:
         form = QuestionForm()
         formset = ChoiceFormSet(instance=None)
