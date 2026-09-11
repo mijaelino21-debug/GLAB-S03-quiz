@@ -15,6 +15,7 @@ class Exam(models.Model):
 
 class Question(models.Model):
     statement = models.TextField()
+    score = models.IntegerField(default=1)
     exam = models.ForeignKey(Exam, related_name="questions", on_delete=models.CASCADE)
 
     class Meta:
